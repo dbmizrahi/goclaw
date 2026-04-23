@@ -38,9 +38,9 @@ import type { SpeakerVoice } from "@/components/multi-speaker-editor";
 function getVoiceId(draft: TtsConfig): string {
   switch (draft.provider) {
     case "openai": return draft.openai.voice ?? "";
-    case "elevenlabs": return draft.elevenlabs.voice_id ?? "";
+    case "elevenlabs": return draft.elevenlabs.voice ?? "";
     case "edge": return draft.edge.voice ?? "";
-    case "minimax": return draft.minimax.voice_id ?? "";
+    case "minimax": return draft.minimax.voice ?? "";
     case "gemini": return draft.gemini.voice ?? "";
     default: return "";
   }
@@ -49,7 +49,7 @@ function getVoiceId(draft: TtsConfig): string {
 function getModelId(draft: TtsConfig): string {
   switch (draft.provider) {
     case "openai": return draft.openai.model ?? "";
-    case "elevenlabs": return draft.elevenlabs.model_id ?? "";
+    case "elevenlabs": return draft.elevenlabs.model ?? "";
     case "minimax": return draft.minimax.model ?? "";
     case "gemini": return draft.gemini.model ?? "";
     default: return "";
@@ -63,7 +63,7 @@ function voicePatch(provider: string, value: string): [ProviderKey, Partial<TtsP
     case "openai": return ["openai", { voice: value }];
     case "elevenlabs": return ["elevenlabs", { voice: value }];
     case "edge": return ["edge", { voice: value }];
-    case "minimax": return ["minimax", { voice_id: value }];
+    case "minimax": return ["minimax", { voice: value }];
     case "gemini": return ["gemini", { voice: value }];
     default: return null;
   }
@@ -72,7 +72,7 @@ function voicePatch(provider: string, value: string): [ProviderKey, Partial<TtsP
 function modelPatch(provider: string, value: string): [ProviderKey, Partial<TtsProviderConfig>] | null {
   switch (provider) {
     case "openai": return ["openai", { model: value }];
-    case "elevenlabs": return ["elevenlabs", { model_id: value }];
+    case "elevenlabs": return ["elevenlabs", { model: value }];
     case "minimax": return ["minimax", { model: value }];
     case "gemini": return ["gemini", { model: value }];
     default: return null;
