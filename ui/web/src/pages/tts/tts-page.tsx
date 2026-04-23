@@ -61,7 +61,7 @@ type ProviderKey = keyof Pick<TtsConfig, "openai" | "elevenlabs" | "edge" | "min
 function voicePatch(provider: string, value: string): [ProviderKey, Partial<TtsProviderConfig>] | null {
   switch (provider) {
     case "openai": return ["openai", { voice: value }];
-    case "elevenlabs": return ["elevenlabs", { voice_id: value }];
+    case "elevenlabs": return ["elevenlabs", { voice: value }];
     case "edge": return ["edge", { voice: value }];
     case "minimax": return ["minimax", { voice_id: value }];
     case "gemini": return ["gemini", { voice: value }];
